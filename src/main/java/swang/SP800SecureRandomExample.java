@@ -7,6 +7,7 @@ import org.bouncycastle.crypto.prng.SP800SecureRandomBuilder;
 import org.bouncycastle.crypto.prng.FixedSecureRandom;
 
 import java.security.SecureRandom;
+import java.util.Base64;
 
 public class SP800SecureRandomExample {
     public static void main(String[] args) {
@@ -18,9 +19,10 @@ public class SP800SecureRandomExample {
         for (int i = 0; i < 100; i++) {
             int j = random.nextInt();
             System.out.println(j);
-            byte[] bytes = new byte[128];
+            byte[] bytes = new byte[10];
             random.nextBytes(bytes);
-            System.out.println(new String(bytes));
+            String s = Base64.getEncoder().encodeToString(bytes);
+            System.out.println(s + " ("+s.length()+")");
         }
 
     }
